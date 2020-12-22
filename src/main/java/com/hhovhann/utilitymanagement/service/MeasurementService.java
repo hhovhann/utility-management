@@ -7,9 +7,9 @@ import com.hhovhann.utilitymanagement.model.ResponseModel;
 import java.util.Optional;
 
 public interface MeasurementService {
-    ResponseModel addMeasurement();
+    ResponseModel addMeasurement(RequestModel model);
 
-    ResponseModel getPreviousMeasurement(RequestModel model);
+    ResponseModel getPreviousMeasurement(Long userId);
 
     Optional<Measurement> findMeasurement(long measurementId);
 }

@@ -21,7 +21,7 @@ public class Measurement {
     private Gas gas;
     @Embedded
     private Water water;
-
-    @OneToOne(mappedBy = "measurement")
+    @OneToOne
+    @JoinColumn(name = "id")
     private User user;
 }

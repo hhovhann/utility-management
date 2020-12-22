@@ -18,9 +18,6 @@ public class User {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
-    @Column(name = "full_name")
-    @NotBlank(message = "Full name is mandatory")
-    private String fullName;
-    @OneToOne(mappedBy = "measurement_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Measurement measurement;
 }

@@ -4,8 +4,10 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 #Endpoints
 
 * POST      /measurements/{user_id}                           - Insert measurements for given user
-###### ```URL: http://localhost:8080/measurements/1```
-```
+###### ```URL: http://localhost:8080/measurements```asciidoc
+
+* Request Body
+```asciidoc
 {
    "userId":"1L",
    "gasMeter":"12345L",
@@ -14,14 +16,27 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 }
 ```
 
-* GET       /measurements/{user_id}                           - Get measurements for given user
-###### ```URL: http://localhost:8080/measurements/1```
-```
+* Response Body
+```asciidoc
 {
-   "userId":"1L",
-   "gasMeter":"12345L",
-   "coldWaterMeter":"12345L",
-   "hotWaterMeter":"12345L"
+    "userId": 1,
+    "gasMeter": 12345,
+    "coldWaterMeter": null,
+    "hotWaterMeter": null,
+    "error": "no errors"
+}
+```
+
+* GET       /measurements/{user_id}                           - Get measurements for given user
+###### ```URL: http://localhost:8080/measurements/1```asciidoc
+* Response Body
+
+```asciidoc
+{
+   "userId":1,
+   "gasMeter":12345,
+   "coldWaterMeter":12345,
+   "hotWaterMeter":12345
 }
 ```
 
@@ -42,9 +57,9 @@ mvn clean package
 # Run Tests
 mvn clean test
 
-# Nice to have
+# Nice to have TODO's
 * More unit and integration tests with different scenarios
 * Validation custom logic with custom exceptions
 
 # Estimation time
-* Time 3h
+* Time 6h
