@@ -8,4 +8,8 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class RequestModel {
+    private Long userId;
+    private Long gasMeter;
+    private Long coldWaterMeter;
+    private Long hotWaterMeter;
 }

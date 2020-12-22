@@ -1,7 +1,5 @@
 package com.hhovhann.utilitymanagement.model;
 
-import com.hhovhann.utilitymanagement.entity.Gas;
-import com.hhovhann.utilitymanagement.entity.Water;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +8,9 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class ResponseModel {
-    Gas gas;
-    Water water;
-    String error;
+    private Long userId;
+    private Long gasMeter;
+    private Long coldWaterMeter;
+    private Long hotWaterMeter;
+    private String error;
 }

@@ -21,6 +21,6 @@ public class User {
     @Column(name = "full_name")
     @NotBlank(message = "Full name is mandatory")
     private String fullName;
-    @OneToOne(mappedBy = "measurement", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "measurement_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Measurement measurement;
 }

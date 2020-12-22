@@ -26,7 +26,7 @@ public class MeasurementController {
 
     @PostMapping("/{user_id}")
     ResponseEntity<ResponseModel> addMeasurement(@Valid String userId, @Valid @RequestBody RequestModel requestModel) {
-       
+
         return ResponseEntity.ok(measurementService.addMeasurement());
     }
 

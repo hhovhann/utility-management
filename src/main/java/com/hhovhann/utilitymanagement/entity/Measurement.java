@@ -21,7 +21,7 @@ public class Measurement {
     private Gas gas;
     @Embedded
     private Water water;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "measurement_id")
-    private Measurement measurement;
+
+    @OneToOne(mappedBy = "measurement")
+    private User user;
 }
