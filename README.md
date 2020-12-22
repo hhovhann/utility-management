@@ -60,6 +60,7 @@ mvn clean test
 # Nice to have TODO's
 * More unit and integration tests with different scenarios
 * Validation custom logic with custom exceptions
+* Application measurement and cross logging with AOP
 
 # Estimation time
 * Time 6h
