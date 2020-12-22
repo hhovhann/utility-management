@@ -9,14 +9,14 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 * Request Body
 ```asciidoc
 {
-   "userId":"1L",
-   "gasMeter":"12345L",
-   "coldWaterMeter":"12345L",
-   "hotWaterMeter":"12345L"
+   "userId":1,
+   "gasMeter":12345,
+   "coldWaterMeter":12345,
+   "hotWaterMeter":12345
 }
 ```
 
-* Response Body
+* Success Response Body
 ```asciidoc
 {
     "userId": 1,
@@ -27,9 +27,20 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 }
 ```
 
+* Error Response Body
+```asciidoc
+{
+    "userId": null,
+    "gasMeter": null,
+    "coldWaterMeter": null,
+    "hotWaterMeter": null,
+    "error": "Something happened when trying to retrieve previously measurement."
+}
+```
+
 * GET       /measurements/{user_id}                           - Get measurements for given user
 ###### ```URL: http://localhost:8080/measurements/1```asciidoc
-* Response Body
+* Success Response Body
 
 ```asciidoc
 {
@@ -37,6 +48,16 @@ Gas &amp; Water Usage Monitoring Application Demo Application
    "gasMeter":12345,
    "coldWaterMeter":12345,
    "hotWaterMeter":12345
+}
+```
+* Error Response Body
+```asciidoc
+{
+    "userId": null,
+    "gasMeter": null,
+    "coldWaterMeter": null,
+    "hotWaterMeter": null,
+    "error": "Something happened when trying to retrieve previously measurement."
 }
 ```
 

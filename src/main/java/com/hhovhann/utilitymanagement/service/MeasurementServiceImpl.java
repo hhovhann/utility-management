@@ -22,35 +22,33 @@ public class MeasurementServiceImpl implements MeasurementService {
 
     @Override
     public ResponseModel addMeasurement(RequestModel model) {
-        Measurement measurement = measurementRepository.save(
+        var measurement = measurementRepository.save(
                 Measurement.builder()
                         .user(User.builder().id(model.getUserId()).build())
                         .gas(Gas.builder().gasMeter(model.getGasMeter()).build())
-                        .water(Water.builder().coldWaterMeter(model.getColdWaterMeter()).hotWaterMeter(model.getColdWaterMeter()).build())
-                        .build()
-        );
-        // TODO: After need replace runtime exception with validation checking, null checking to be sure that all insertion happened properly
-        if (Objects.isNull(measurement)) throw new RuntimeException("Something happened during Measurement save.");
+                        .water(Water.builder().coldWaterMeter(model.getColdWaterMeter()).hotWaterMeter(model.getHotWaterMeter()).build())
+                        .build());
+        if (Objects.isNull(measurement))
+            return ResponseModel.builder().error("Something happened when trying to add a measurement.").build();
         return ResponseModel.builder()
+                .userId(measurement.getUser().getId())
                 .gasMeter(measurement.getGas().getGasMeter())
-                .coldWaterMeter(measurement.getWater().getColdWaterMeter())
                 .hotWaterMeter(measurement.getWater().getHotWaterMeter())
-                .error("no errors")
-                .build();
+                .coldWaterMeter(measurement.getWater().getColdWaterMeter())
+                .error("no errors").build();
     }
 
     @Override
     public ResponseModel getPreviousMeasurement(Long userId) {
-        Measurement lastMeasurement = measurementRepository.findByIdOrderByIdDesc(userId);
-        // TODO: After need replace runtime exception with validation checking, null checking to be sure that all insertion happened properly
+        var lastMeasurement = measurementRepository.findByIdOrderByIdDesc(userId);
         if (Objects.isNull(lastMeasurement))
-            throw new RuntimeException("Something happened when trying to retrieve previous measurement.");
+            return ResponseModel.builder().error("Something happened when trying to retrieve previously measurement.").build();
         return ResponseModel.builder()
+                .userId(lastMeasurement.getUser().getId())
                 .gasMeter(lastMeasurement.getGas().getGasMeter())
-                .coldWaterMeter(lastMeasurement.getWater().getColdWaterMeter())
                 .hotWaterMeter(lastMeasurement.getWater().getHotWaterMeter())
-                .error("no error")
-                .build();
+                .coldWaterMeter(lastMeasurement.getWater().getColdWaterMeter())
+                .error("no error").build();
     }
 
     @Override
