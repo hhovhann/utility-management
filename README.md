@@ -3,7 +3,7 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 
 #Endpoints
 
-* POST      /measurements/{user_id}                           - Insert measurements for given user
+* POST      /measurements                          - Insert measurements for given user
 ###### ```URL: http://localhost:8080/measurements```asciidoc
 
 * Request Body
@@ -21,8 +21,8 @@ Gas &amp; Water Usage Monitoring Application Demo Application
 {
     "userId": 1,
     "gasMeter": 12345,
-    "coldWaterMeter": null,
-    "hotWaterMeter": null,
+    "coldWaterMeter": 12345,
+    "hotWaterMeter": 12345,
     "error": "no errors"
 }
 ```
@@ -59,7 +59,7 @@ mvn clean test
 
 # Nice to have TODO's
 * More unit and integration tests with different scenarios
-* Validation custom logic with custom exceptions
+* Validation custom logic with custom exceptions and handling responses with errors
 * Application measurement and cross logging with AOP
 
 # Estimation time
