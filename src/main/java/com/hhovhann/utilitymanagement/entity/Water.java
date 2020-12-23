@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 @Embeddable
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Water {
     @NotNull
     @Column(name = "cold_water_meter")

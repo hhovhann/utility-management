@@ -7,24 +7,27 @@ import com.hhovhann.utilitymanagement.entity.Water;
 import com.hhovhann.utilitymanagement.model.RequestModel;
 import com.hhovhann.utilitymanagement.model.ResponseModel;
 import com.hhovhann.utilitymanagement.repository.MeasurementRepository;
+import com.hhovhann.utilitymanagement.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class MeasurementServiceImpl implements MeasurementService {
+    private final UserRepository userRepository;
     private final MeasurementRepository measurementRepository;
-
-    public MeasurementServiceImpl(MeasurementRepository measurementRepository) {
-        this.measurementRepository = measurementRepository;
-    }
 
     @Override
     public ResponseModel addMeasurement(RequestModel model) {
+        var user = userRepository.save(User.builder().id(model.getUserId()).build());
+        if (Objects.isNull(user))
+            return ResponseModel.builder().error("Something happened when trying to add a user.").build();
         var measurement = measurementRepository.save(
                 Measurement.builder()
-                        .user(User.builder().id(model.getUserId()).build())
+                        .user(user)
                         .gas(Gas.builder().gasMeter(model.getGasMeter()).build())
                         .water(Water.builder().coldWaterMeter(model.getColdWaterMeter()).hotWaterMeter(model.getHotWaterMeter()).build())
                         .build());

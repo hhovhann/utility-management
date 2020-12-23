@@ -1,27 +1,27 @@
 package com.hhovhann.utilitymanagement.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
+@ToString
 @Entity
-@Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Measurement {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     @Column(name = "id")
     private Long id;
     @Embedded
     private Gas gas;
     @Embedded
     private Water water;
-    @OneToOne
-    @JoinColumn(name = "id")
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
     private User user;
 }

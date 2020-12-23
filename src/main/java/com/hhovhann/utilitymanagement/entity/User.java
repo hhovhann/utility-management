@@ -1,23 +1,21 @@
 package com.hhovhann.utilitymanagement.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-@Data
+@ToString
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Getter
+    @Column(name = "user_id")
     private Long id;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private Measurement measurement;
 }
